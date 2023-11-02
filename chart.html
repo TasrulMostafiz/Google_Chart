@@ -82,26 +82,25 @@
             </div>
         </div>   
         <div class="col" style="border: 1px solid #ccc;margin: 1px;">
-            <!-- <ul class="nav nav-pills mb-3 mt-3" id="bar-tab" role="tablist">
+            <ul class="nav nav-pills mb-3 mt-3" id="line-tab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="bar-chart-tab" data-bs-toggle="pill" data-bs-target="#bar-chart"
-                        type="button" role="tab" aria-controls="bar-chart" aria-selected="true">Bar Chart</button>
+                    <button class="nav-link active" id="line-chart-tab" data-bs-toggle="pill" data-bs-target="#line-chart"
+                        type="button" role="tab" aria-controls="line-chart" aria-selected="true">Line Chart</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="bar-data-tab" data-bs-toggle="pill" data-bs-target="#bar-data"
-                        type="button" role="tab" aria-controls="bar-data" aria-selected="false">Table</button>
+                    <button class="nav-link" id="line-data-tab" data-bs-toggle="pill" data-bs-target="#line-data"
+                        type="button" role="tab" aria-controls="line-data" aria-selected="false">Table</button>
                 </li>        
             </ul>
             <div class="tab-content" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="bar-chart" role="tabpanel" aria-labelledby="bar-chart-tab">
-                    <div class="col" id="myBarChart" ></div>
+                <div class="tab-pane fade show active" id="line-chart" role="tabpanel" aria-labelledby="line-chart-tab">
+                    <div class="col" id="myLineChart" ></div>
                 </div>
-                <div class="tab-pane fade" id="bar-data" role="tabpanel" aria-labelledby="bar-data-tab">
-                    <div class="col" id="myBarData" ></div>
+                <div class="tab-pane fade" id="line-data" role="tabpanel" aria-labelledby="line-data-tab">
+                    <div class="col" id="myLineData" ></div>
                 </div>            
             </div>
-        </div>         -->
-    </div>
+        </div>  
   
 </div>
 
@@ -378,17 +377,17 @@
         google.charts.setOnLoadCallback(drawComboChart);
         google.charts.setOnLoadCallback(drawComboData);
 
-        // $.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false", function (data) {
-        //     // console.log(data);
-        //     let item={};
-        //     data.forEach(element => {
-        //         // item.name=element.name;
-        //         // item.rate=element.price_change_24h;
-        //         currency_data.push({'name':element.name,'rate':element.price_change_24h});
-        //     });
-        //     google.charts.setOnLoadCallback(drawBarChart);
-        //     console.log(currency_data);
-        // });
+        $.get("https://open.er-api.com/v6/latest/USD", function (data) {
+            // console.log(data.rates);
+            
+            for (const [key, value] of Object.entries(data.rates)) {
+                currency_data.push({ 'name': `${key}`, 'rate': `${value}` });
+            } 
+            // console.log(currency_data);
+            google.charts.setOnLoadCallback(drawLineChart);
+            google.charts.setOnLoadCallback(drawLineData);
+            
+        });
 
 
         // Callback that creates and populates a data table,
@@ -559,6 +558,55 @@
             var table = new google.visualization.Table(document.getElementById('myComboData'));
             table.draw(data, options);
         }
+
+        function drawLineChart() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Currency');
+            data.addColumn('number', 'Rate');
+            data.addRows(currency_data.map((d) =>{
+                return [d.name,parseInt(d.rate)];
+            }));
+
+            // Set chart options
+            var options = {
+                title: 'Exchange Rate(USD)',
+                width: 600,
+                height: 400,
+                curveType: 'function',
+                legend: { position: 'bottom' }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('myLineChart'));
+
+            chart.draw(data, options);
+
+        }
+
+        function drawLineData() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Currency');
+            data.addColumn('number', 'Rate');
+            data.addRows(currency_data.map((d) =>{
+                return [d.name,parseInt(d.rate)];
+            }));
+
+            // Set chart options
+            var options = {
+                'showRowNumber': false,
+                'width': '100%',
+                'height': '50%',
+                'page':'enable',
+                'pageSize':10                
+            };
+
+            // Instantiate and draw our chart, passing in some options.
+            var table = new google.visualization.Table(document.getElementById('myLineData'));
+            table.draw(data, options);
+        }
+
+        
         
 
 
