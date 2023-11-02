@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Chart Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+</head>
+<body>
+
+<div class="container-fluid p-5 bg-primary text-white text-center">
+  <h1>Chart Sample</h1>
+</div>
+  
+<div class="container mt-5">
+    
+    <div class="row">
+        <div class="col" style="border: 1px solid #ccc;margin: 1px;">
+            <ul class="nav nav-pills mb-3 mt-3" id="pie-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="pie-chart-tab" data-bs-toggle="pill" data-bs-target="#pie-chart"
+                        type="button" role="tab" aria-controls="pie-chart" aria-selected="true">Pie Chart</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pie-data-tab" data-bs-toggle="pill" data-bs-target="#pie-data"
+                        type="button" role="tab" aria-controls="pie-data" aria-selected="false">Table</button>
+                </li>        
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pie-chart" role="tabpanel" aria-labelledby="pie-chart-tab">
+                    <div class="col" id="myPieChart" ></div>
+                </div>
+                <div class="tab-pane fade" id="pie-data" role="tabpanel" aria-labelledby="pie-data-tab">
+                    <div class="col" id="myPieData" ></div>
+                </div>            
+            </div>
+        </div>   
+        <div class="col" style="border: 1px solid #ccc;margin: 1px;">
+            <ul class="nav nav-pills mb-3 mt-3" id="bar-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="bar-chart-tab" data-bs-toggle="pill" data-bs-target="#bar-chart"
+                        type="button" role="tab" aria-controls="bar-chart" aria-selected="true">Bar Chart</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="bar-data-tab" data-bs-toggle="pill" data-bs-target="#bar-data"
+                        type="button" role="tab" aria-controls="bar-data" aria-selected="false">Table</button>
+                </li>        
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="bar-chart" role="tabpanel" aria-labelledby="bar-chart-tab">
+                    <div class="col" id="myBarChart" ></div>
+                </div>
+                <div class="tab-pane fade" id="bar-data" role="tabpanel" aria-labelledby="bar-data-tab">
+                    <div class="col" id="myBarData" ></div>
+                </div>            
+            </div>
+        </div>        
+    </div>
+    <div class="row">
+        <div class="col" style="border: 1px solid #ccc;margin: 1px;">
+            <ul class="nav nav-pills mb-3 mt-3" id="combo-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="combo-chart-tab" data-bs-toggle="pill" data-bs-target="#combo-chart"
+                        type="button" role="tab" aria-controls="combo-chart" aria-selected="true">Combo Chart</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="combo-data-tab" data-bs-toggle="pill" data-bs-target="#combo-data"
+                        type="button" role="tab" aria-controls="combo-data" aria-selected="false">Table</button>
+                </li>        
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="combo-chart" role="tabpanel" aria-labelledby="combo-chart-tab">
+                    <div class="col" id="myComboChart" ></div>
+                </div>
+                <div class="tab-pane fade" id="combo-data" role="tabpanel" aria-labelledby="combo-data-tab">
+                    <div class="col" id="myComboData" ></div>
+                </div>            
+            </div>
+        </div>   
+        <div class="col" style="border: 1px solid #ccc;margin: 1px;">
+            <!-- <ul class="nav nav-pills mb-3 mt-3" id="bar-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="bar-chart-tab" data-bs-toggle="pill" data-bs-target="#bar-chart"
+                        type="button" role="tab" aria-controls="bar-chart" aria-selected="true">Bar Chart</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="bar-data-tab" data-bs-toggle="pill" data-bs-target="#bar-data"
+                        type="button" role="tab" aria-controls="bar-data" aria-selected="false">Table</button>
+                </li>        
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="bar-chart" role="tabpanel" aria-labelledby="bar-chart-tab">
+                    <div class="col" id="myBarChart" ></div>
+                </div>
+                <div class="tab-pane fade" id="bar-data" role="tabpanel" aria-labelledby="bar-data-tab">
+                    <div class="col" id="myBarData" ></div>
+                </div>            
+            </div>
+        </div>         -->
+    </div>
+  
+</div>
+
+</body>
+</html>
+<script >
+    $(document).ready(function () {
+        const currency_data = [];
+        
+        // $.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false", function (data) {
+        //     console.log(data);
+        //     var item={};
+        //     data.forEach(element => {
+        //         item.name=element.name;
+        //         item.rate=element.price_change_24h;
+        //         currency_data.push(item);
+        //     });
+        //     // console.log(currency_data);
+        // });
+
+        
+        
+        const sample_data = [
+            {
+                "letter": "A",
+                "frequency": 0.08167
+            },
+            {
+                "letter": "B",
+                "frequency": 0.01492
+            },
+            {
+                "letter": "C",
+                "frequency": 0.02782
+            },
+            {
+                "letter": "D",
+                "frequency": 0.04253
+            },
+            {
+                "letter": "E",
+                "frequency": 0.12702
+            },
+            {
+                "letter": "F",
+                "frequency": 0.02288
+            },
+            {
+                "letter": "G",
+                "frequency": 0.02015
+            },
+            {
+                "letter": "H",
+                "frequency": 0.06094
+            },
+            {
+                "letter": "I",
+                "frequency": 0.06966
+            },
+            {
+                "letter": "J",
+                "frequency": 0.00153
+            },
+            {
+                "letter": "K",
+                "frequency": 0.00772
+            },
+            {
+                "letter": "L",
+                "frequency": 0.04025
+            },
+            {
+                "letter": "M",
+                "frequency": 0.02406
+            },
+            {
+                "letter": "N",
+                "frequency": 0.06749
+            },
+            {
+                "letter": "O",
+                "frequency": 0.07507
+            },
+            {
+                "letter": "P",
+                "frequency": 0.01929
+            },
+            {
+                "letter": "Q",
+                "frequency": 0.00095
+            },
+            {
+                "letter": "R",
+                "frequency": 0.05987
+            },
+            {
+                "letter": "S",
+                "frequency": 0.06327
+            },
+            {
+                "letter": "T",
+                "frequency": 0.09056
+            },
+            {
+                "letter": "U",
+                "frequency": 0.02758
+            },
+            {
+                "letter": "V",
+                "frequency": 0.00978
+            },
+            {
+                "letter": "W",
+                "frequency": 0.0236
+            },
+            {
+                "letter": "X",
+                "frequency": 0.0015
+            },
+            {
+                "letter": "Y",
+                "frequency": 0.01974
+            },
+            {
+                "letter": "Z",
+                "frequency": 0.00074
+            }
+        ];
+
+        const sample_data_combo = [
+            {
+                "letter": "A",
+                "frequency": 0.08167,
+                "average": 0.040835
+            },
+            {
+                "letter": "B",
+                "frequency": 0.01492,
+                "average": 0.00746
+            },
+            {
+                "letter": "C",
+                "frequency": 0.02782,
+                "average": 0.01391
+            },
+            {
+                "letter": "D",
+                "frequency": 0.04253,
+                "average": 0.021265
+            },
+            {
+                "letter": "E",
+                "frequency": 0.12702,
+                "average": 0.06351
+            },
+            {
+                "letter": "F",
+                "frequency": 0.02288,
+                "average": 0.01144
+            },
+            {
+                "letter": "G",
+                "frequency": 0.02015,
+                "average": 0.010075
+            },
+            {
+                "letter": "H",
+                "frequency": 0.06094,
+                "average": 0.03047
+            },
+            {
+                "letter": "I",
+                "frequency": 0.06966,
+                "average": 0.03483
+            },
+            {
+                "letter": "J",
+                "frequency": 0.00153,
+                "average": 0.000765
+            },
+            {
+                "letter": "K",
+                "frequency": 0.00772,
+                "average": 0.00386
+            },
+            {
+                "letter": "L",
+                "frequency": 0.04025,
+                "average": 0.020125
+            },
+            {
+                "letter": "M",
+                "frequency": 0.02406,
+                "average": 0.01203
+            },
+            {
+                "letter": "N",
+                "frequency": 0.06749,
+                "average": 0.033745
+            },
+            {
+                "letter": "O",
+                "frequency": 0.07507,
+                "average": 0.037535
+            },
+            {
+                "letter": "P",
+                "frequency": 0.01929,
+                "average": 0.009645
+            },
+            {
+                "letter": "Q",
+                "frequency": 0.00095,
+                "average": 0.000475
+            },
+            {
+                "letter": "R",
+                "frequency": 0.05987,
+                "average": 0.029935
+            },
+            {
+                "letter": "S",
+                "frequency": 0.06327,
+                "average": 0.031635
+            },
+            {
+                "letter": "T",
+                "frequency": 0.09056,
+                "average": 0.04528
+            },
+            {
+                "letter": "U",
+                "frequency": 0.02758,
+                "average": 0.01379
+            },
+            {
+                "letter": "V",
+                "frequency": 0.00978,
+                "average": 0.00489
+            },
+            {
+                "letter": "W",
+                "frequency": 0.0236,
+                "average": 0.0118
+            },
+            {
+                "letter": "X",
+                "frequency": 0.0015,
+                "average": 0.00075
+            },
+            {
+                "letter": "Y",
+                "frequency": 0.01974,
+                "average": 0.00987
+            },
+            {
+                "letter": "Z",
+                "frequency": 0.00074,
+                "average": 0.00037
+            }
+        ];
+
+   
+
+       
+        // Load the Visualization API and the corechart package.
+      google.charts.load('current', { 'packages': ['corechart','table'] });
+
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.charts.setOnLoadCallback(drawPieChart);
+        google.charts.setOnLoadCallback(drawPieData);
+        google.charts.setOnLoadCallback(drawBarChart);
+        google.charts.setOnLoadCallback(drawBarData);
+        google.charts.setOnLoadCallback(drawComboChart);
+        google.charts.setOnLoadCallback(drawComboData);
+
+        // $.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false", function (data) {
+        //     // console.log(data);
+        //     let item={};
+        //     data.forEach(element => {
+        //         // item.name=element.name;
+        //         // item.rate=element.price_change_24h;
+        //         currency_data.push({'name':element.name,'rate':element.price_change_24h});
+        //     });
+        //     google.charts.setOnLoadCallback(drawBarChart);
+        //     console.log(currency_data);
+        // });
+
+
+        // Callback that creates and populates a data table,
+        // instantiates the pie chart, passes in the data and
+        // draws it.
+        function drawPieChart() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Letter');
+            data.addColumn('number', 'Frequency');
+            data.addRows(sample_data.map((d) =>{
+                return [d.letter,d.frequency];
+            }));
+
+            // Set chart options
+            var options = {
+                'title': 'Letter Frequency',
+                'is3D':true,
+                'width': 600,
+                'height': 400,
+                'animation': {
+                    'startup': true,
+                    'duration': 1000,
+                    'easing': 'out',
+                }
+
+                
+            };
+
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('myPieChart'));
+            chart.draw(data, options);
+        }
+
+        function drawPieData() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Letter');
+            data.addColumn('number', 'Frequency');
+            data.addRows(sample_data.map((d) =>{
+                return [d.letter,d.frequency];
+            }));
+
+            // Set chart options
+            var options = {
+                'showRowNumber': false,
+                'width': '100%',
+                'height': '50%',
+                'page':'enable',
+                'pageSize':10                
+            };
+
+            // Instantiate and draw our chart, passing in some options.
+            var table = new google.visualization.Table(document.getElementById('myPieData'));
+            table.draw(data, options);
+        }
+
+        function drawBarChart() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Letter');
+            data.addColumn('number', 'Frequency');            
+            data.addRows(sample_data.map((d) =>{
+                return [d.letter,d.frequency];
+            }));
+           
+
+            // Set chart options
+            var options = {
+                'title': 'Letter Frequency',
+                'is3D':true,
+                'width': 600,
+                'height': 400,
+                'animation': {
+                    'startup': true,
+                    'duration': 1000,
+                    'easing': 'out',
+                }
+            };
+
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.ColumnChart(document.getElementById('myBarChart'));
+            chart.draw(data, options);
+
+            
+        }
+
+        function drawBarData() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Letter');
+            data.addColumn('number', 'Frequency');
+            data.addRows(sample_data.map((d) =>{
+                return [d.letter,d.frequency];
+            }));
+
+            // Set chart options
+            var options = {
+                'showRowNumber': false,
+                'width': '100%',
+                'height': '50%',
+                'page':'enable',
+                'pageSize':10                
+            };
+
+            // Instantiate and draw our chart, passing in some options.
+            var table = new google.visualization.Table(document.getElementById('myBarData'));
+            table.draw(data, options);
+        }
+        
+        function drawComboChart() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Letter');
+            data.addColumn('number', 'Frequency');
+            data.addColumn('number', 'Average');
+            data.addRows(sample_data_combo.map((d) =>{
+                return [d.letter,d.frequency,d.average];
+            }));
+
+            var series_option={
+                'type': 'line',
+                'color':'red'
+            };
+
+            // Set chart options
+            var options = {
+                'title': 'Letter Frequency',
+                'is3D':true,
+                'width': 600,
+                'height': 400,
+                'animation': {
+                    'startup': true,
+                    'duration': 1000,
+                    'easing': 'out',
+                },
+                'seriesType': 'bars',
+                'series': {1: series_option}
+            };
+
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.ComboChart(document.getElementById('myComboChart'));
+            chart.draw(data, options);
+
+            
+        }
+
+        function drawComboData() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Letter');
+            data.addColumn('number', 'Frequency');
+            data.addColumn('number', 'Average');
+            data.addRows(sample_data_combo.map((d) =>{
+                return [d.letter,d.frequency,d.average];
+            }));
+
+            // Set chart options
+            var options = {
+                'showRowNumber': false,
+                'width': '100%',
+                'height': '50%',
+                'page':'enable',
+                'pageSize':10                
+            };
+
+            // Instantiate and draw our chart, passing in some options.
+            var table = new google.visualization.Table(document.getElementById('myComboData'));
+            table.draw(data, options);
+        }
+        
+
+
+    });
+
+    
+    
+</script>
