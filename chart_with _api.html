@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Chart Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+</head>
+<body>
+
+<div class="container-fluid p-5 bg-primary text-white text-center">
+  <h1>Chart Sample</h1>
+</div>
+  
+<div class="container mt-5">
+    
+    <div class="row">
+        <div class="col" style="border: 1px solid #ccc;margin: 1px;">
+            <ul class="nav nav-pills mb-3 mt-3" id="pie-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="pie-chart-tab" data-bs-toggle="pill" data-bs-target="#pie-chart"
+                        type="button" role="tab" aria-controls="pie-chart" aria-selected="true">Pie Chart</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pie-data-tab" data-bs-toggle="pill" data-bs-target="#pie-data"
+                        type="button" role="tab" aria-controls="pie-data" aria-selected="false">Table</button>
+                </li>        
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pie-chart" role="tabpanel" aria-labelledby="pie-chart-tab">
+                    <div class="col" id="myPieChart" ></div>
+                </div>
+                <div class="tab-pane fade" id="pie-data" role="tabpanel" aria-labelledby="pie-data-tab">
+                    <div class="col" id="myPieData" ></div>
+                </div>            
+            </div>
+        </div>   
+        <div class="col" style="border: 1px solid #ccc;margin: 1px;">
+            <ul class="nav nav-pills mb-3 mt-3" id="bar-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="bar-chart-tab" data-bs-toggle="pill" data-bs-target="#bar-chart"
+                        type="button" role="tab" aria-controls="bar-chart" aria-selected="true">Bar Chart</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="bar-data-tab" data-bs-toggle="pill" data-bs-target="#bar-data"
+                        type="button" role="tab" aria-controls="bar-data" aria-selected="false">Table</button>
+                </li>        
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="bar-chart" role="tabpanel" aria-labelledby="bar-chart-tab">
+                    <div class="col" id="myBarChart" ></div>
+                </div>
+                <div class="tab-pane fade" id="bar-data" role="tabpanel" aria-labelledby="bar-data-tab">
+                    <div class="col" id="myBarData" ></div>
+                </div>            
+            </div>
+        </div>        
+    </div>
+    <div class="row">          
+        <div class="col" style="border: 1px solid #ccc;margin: 1px;">
+            <ul class="nav nav-pills mb-3 mt-3" id="line-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="line-chart-tab" data-bs-toggle="pill" data-bs-target="#line-chart"
+                        type="button" role="tab" aria-controls="line-chart" aria-selected="true">Line Chart</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="line-data-tab" data-bs-toggle="pill" data-bs-target="#line-data"
+                        type="button" role="tab" aria-controls="line-data" aria-selected="false">Table</button>
+                </li>        
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="line-chart" role="tabpanel" aria-labelledby="line-chart-tab">
+                    <div class="col" id="myLineChart" ></div>
+                </div>
+                <div class="tab-pane fade" id="line-data" role="tabpanel" aria-labelledby="line-data-tab">
+                    <div class="col" id="myLineData" ></div>
+                </div>            
+            </div>
+        </div>
+</div>
+
+<div class="row">
+        <div class="col" style="border: 1px solid #ccc;margin: 1px;">
+            <ul class="nav nav-pills mb-3 mt-3" id="combo-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="combo-chart-tab" data-bs-toggle="pill" data-bs-target="#combo-chart"
+                        type="button" role="tab" aria-controls="combo-chart" aria-selected="true">Combo Chart</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="combo-data-tab" data-bs-toggle="pill" data-bs-target="#combo-data"
+                        type="button" role="tab" aria-controls="combo-data" aria-selected="false">Table</button>
+                </li>        
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="combo-chart" role="tabpanel" aria-labelledby="combo-chart-tab">
+                    <div class="col" id="myComboChart" ></div>
+                </div>
+                <div class="tab-pane fade" id="combo-data" role="tabpanel" aria-labelledby="combo-data-tab">
+                    <div class="col" id="myComboData" ></div>
+                </div>            
+            </div>
+        </div> 
+</div>
+
+</body>
+</html>
+<script >
+    $(document).ready(function () {
+        const currency_data = [];
+        const sample_data = [];
+        let sample_data_combo = [['Location','Case','Discharge','Death']];
+
+        
+        // Load the Visualization API and the corechart package.
+      google.charts.load('current', { 'packages': ['corechart','table'] });
+
+      function load_sample_data(data){
+        data.map((d) =>{
+            sample_data.push({loc:d.loc,deaths:d.deaths});
+            sample_data_combo.push([d.loc,d.confirmedCasesIndian,d.discharged,d.deaths*10]);
+        });
+        //console.log(data);
+        //console.log(sample_data_combo);
+        google.charts.setOnLoadCallback(drawPieChart);
+        google.charts.setOnLoadCallback(drawPieData);
+        google.charts.setOnLoadCallback(drawBarChart);
+        google.charts.setOnLoadCallback(drawBarData);
+        google.charts.setOnLoadCallback(drawLineChart);
+        google.charts.setOnLoadCallback(drawLineData);
+        google.charts.setOnLoadCallback(drawComboChart);
+        google.charts.setOnLoadCallback(drawComboData);
+    }
+
+      function getData() {
+        axios
+          .get('https://api.rootnet.in/covid19-in/stats/latest', {
+            timeout: 5000
+          })
+          .then(res => load_sample_data(res.data.data.regional))
+          .catch(err => console.error(err));
+      }
+
+      getData();
+
+        // Set a callback to run when the Google Visualization API is loaded.
+        
+        
+        
+       
+
+     
+
+
+        // Callback that creates and populates a data table,
+        // instantiates the pie chart, passes in the data and
+        // draws it.
+        function drawPieChart() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Location');
+            data.addColumn('number', 'Deaths');
+            data.addRows(sample_data.map((d) =>{
+                return [d.loc,d.deaths];
+            }));
+
+            // Set chart options
+            var options = {
+                'title': 'Covid Death By Location',
+                'is3D':true,
+                'width': 600,
+                'height': 400,
+                'animation': {
+                    'startup': true,
+                    'duration': 1000,
+                    'easing': 'out',
+                }
+
+                
+            };
+
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('myPieChart'));
+            chart.draw(data, options);
+        }
+
+        function drawPieData() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Loaction');
+            data.addColumn('number', 'Deaths');
+            data.addRows(sample_data.map((d) =>{
+                return [d.loc,d.deaths];
+            }));
+
+            // Set chart options
+            var options = {
+                'showRowNumber': false,
+                'width': '100%',
+                'height': '50%',
+                'page':'enable',
+                'pageSize':10                
+            };
+
+            // Instantiate and draw our chart, passing in some options.
+            var table = new google.visualization.Table(document.getElementById('myPieData'));
+            table.draw(data, options);
+        }
+
+        function drawBarChart() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Loaction');
+            data.addColumn('number', 'Deaths');
+            data.addRows(sample_data.map((d) =>{
+                return [d.loc,d.deaths];
+            }));
+           
+
+            // Set chart options
+            var options = {
+                'title': 'Covid Death By Location',
+                'is3D':true,
+                'width': 600,
+                'height': 400,
+                'animation': {
+                    'startup': true,
+                    'duration': 1000,
+                    'easing': 'out',
+                }
+            };
+
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.ColumnChart(document.getElementById('myBarChart'));
+            chart.draw(data, options);
+
+            
+        }
+
+        function drawBarData() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Loaction');
+            data.addColumn('number', 'Deaths');
+            data.addRows(sample_data.map((d) =>{
+                return [d.loc,d.deaths];
+            }));
+
+            // Set chart options
+            var options = {
+                'showRowNumber': false,
+                'width': '100%',
+                'height': '50%',
+                'page':'enable',
+                'pageSize':10                
+            };
+
+            // Instantiate and draw our chart, passing in some options.
+            var table = new google.visualization.Table(document.getElementById('myBarData'));
+            table.draw(data, options);
+        }
+        
+        function drawComboChart() {
+            // Create the data table.
+            var data = google.visualization.arrayToDataTable(sample_data_combo);
+
+            var series_option={
+                'type': 'line',
+                'color':'orange'
+            };
+
+            // Set chart options
+            var options = {
+                'title': 'Covid Death By Location',
+                'is3D':true,
+                'width': 1000,
+                'height': 400,
+                'animation': {
+                    'startup': true,
+                    'duration': 1300,
+                    'easing': 'out',
+                },
+                'seriesType': 'bars',
+                'series': {2: series_option}
+            };
+
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.ComboChart(document.getElementById('myComboChart'));
+            chart.draw(data, options);
+
+            
+        }
+
+        function drawComboData() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Location');
+            data.addColumn('number', 'Case');
+            data.addColumn('number', 'Deaths');
+            data.addRows(sample_data_combo.map((d) =>{
+                return [d.loc,d.case,d.deaths];
+            }));
+
+            // Set chart options
+            var options = {
+                'showRowNumber': false,
+                'width': '100%',
+                'height': '50%',
+                'page':'enable',
+                'pageSize':10                
+            };
+
+            // Instantiate and draw our chart, passing in some options.
+            var table = new google.visualization.Table(document.getElementById('myComboData'));
+            table.draw(data, options);
+        }
+
+        function drawLineChart() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Loaction');
+            data.addColumn('number', 'Deaths');
+            data.addRows(sample_data.map((d) =>{
+                return [d.loc,d.deaths];
+            }));
+
+            // Set chart options
+            var options = {
+                title: 'Covid Case and Death By Location',
+                width: 1000,
+                height: 400,
+                curveType: 'function',
+                legend: { position: 'bottom' }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('myLineChart'));
+
+            chart.draw(data, options);
+
+        }
+
+        function drawLineData() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Loaction');
+            data.addColumn('number', 'Deaths');
+            data.addRows(sample_data.map((d) =>{
+                return [d.loc,d.deaths];
+            }));
+
+            // Set chart options
+            var options = {
+                'showRowNumber': false,
+                'width': '100%',
+                'height': '50%',
+                'page':'enable',
+                'pageSize':10                
+            };
+
+            // Instantiate and draw our chart, passing in some options.
+            var table = new google.visualization.Table(document.getElementById('myLineData'));
+            table.draw(data, options);
+        }
+
+        
+        
+
+
+    });
+
+    
+    
+</script>
