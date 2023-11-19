@@ -11,16 +11,14 @@
 
 </head>
 <body>
-    <div id = "map" style = "width: 1900px; height: 1080px"></div>
+    <div id = "map" style = "width: 1000px; height: 700px"></div>
     
 </body>
 
 <script>
+    console.log(bangladesh_json);
     var base = {
-    'Empty': L.tileLayer(''),
-    'OpenStreetMap': L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        'attribution': 'Map data &copy; OpenStreetMap contributors'
-    })
+    'Empty': L.tileLayer('')    
     };
 
     var map = L.map('map', {
@@ -28,10 +26,14 @@
     'zoom': 7,
     'layers': [
         base.Empty
-    ]
+    ],
+    'dragging':false,
+    'zooming':false
     });
+    // map.dragging.disable();
 
     var control = L.control.layers(base).addTo(map);
+ 
     
     function onEachFeature(feature, layer) {
         // does this feature have a property named popupContent?
@@ -39,7 +41,7 @@
         //     layer.bindPopup(feature.properties.popupContent);
         //     console.log("event")
         // }
-        console.log(feature.properties);
+        // console.log(feature.properties);
         layer.bindPopup(feature.properties.NAME_4);
         layer.bindTooltip(feature.properties.NAME_4).openTooltip();
     }
